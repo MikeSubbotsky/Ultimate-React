@@ -1,0 +1,10 @@
+.modal-pop {
+    width: 50%;
+    background-color: antiquewhite;
+    border: 2px black solid;
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -0%);
+    border-radius: 20px;
+  }
