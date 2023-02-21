@@ -13,7 +13,7 @@ function Movie({ movie }) {
       const { id } = useParams();
     if (!movie) {
     
-    movie = data.filter(movie => movie.id == id)[0];
+    movie = data.filter(movie => movie.id === id)[0];
     }
 
   return (

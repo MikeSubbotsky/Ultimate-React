@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './NoteForm.css';
+import { NotesArray } from './lib/NotesContext';
 
-
-function NoteForm({ setFunc }) { 
+function NoteForm() { 
     const [textAreaValue, setTextAreaValue] = useState('');
     const [titleValue, setTitleValue] = useState('');
     const [rows, setRows] = useState(3);
+    const { dispatchNotesArray } = useContext(NotesArray);
 
     function handleNoteSubmit (e) {
         e.preventDefault();
         if (textAreaValue) {
-            setFunc(oldArray => [...oldArray, { title: titleValue, text: textAreaValue, createdAt: new Date()}]);
+            //setFunc(oldArray => [...oldArray, { title: titleValue, text: textAreaValue, createdAt: new Date()}]);
+            dispatchNotesArray({
+                type: "ADD_NOTE",
+                payload: {
+                  title: titleValue,
+                  text: textAreaValue,
+                  createdAt: new Date(),
+                  status: 'active'
+                }});
             setTextAreaValue('');
             setTitleValue('');
             setRows(3);

@@ -17,7 +17,6 @@ function SearchActors( { setActors }) {
     } catch (e) {
       console.error(e);
     }
-    
   };
 
   async function handleSearchClick(actor) {

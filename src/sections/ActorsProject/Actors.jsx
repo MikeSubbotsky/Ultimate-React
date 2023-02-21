@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 function Actors( { actors } ) {
   const [displayedActors, setDisplayedActors] = useState([]);
@@ -15,7 +16,7 @@ function Actors( { actors } ) {
           <Card>
             <h5>{actor.name}</h5>
             <p>{actor.known_for_department}</p>
-            <img className="col-sm-12 mb-2" src={`https://image.tmdb.org/t/p/original${actor.profile_path}`} ></img>
+            <Link to={`/actors/${actor.id}`}><img className="col-sm-12 mb-2" src={`https://image.tmdb.org/t/p/original${actor.profile_path}`} ></img></Link>
           </Card>
         </div>
     ))}

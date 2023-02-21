@@ -19,7 +19,7 @@ function Home({ logIn }) {
     if (logIn) fetch("https://jsonplaceholder.typicode.com/posts")
       .then((res) => res.json())
       .then((data) => setPosts(data));
-  }, []);
+  }, [logIn]);
 
   const handleDelete = (id) => {
     setPosts(posts.filter((post) => post.id !== id));

@@ -1,45 +1,47 @@
 import React, { useState } from 'react';
-import { Route, Routes, Link } from "react-router-dom"
-import logo from './logo.svg';
+import { Route, Routes } from "react-router-dom"
 import './App.css';
-import MovieCards from './components/MovieCards';
-import FilterButtons from './components/FilterButtons';
-import SearchInput from './components/SearchInput';
-import DogCard from './components/DogCard';
+import DogCard from './sections/DogsProject/DogCard';
 import NavBar from './components/NavBar';
-import Movie from './components/Movie';
-import NotesWrapper from './components/NotesWrapper';
-import FormHandler from './components/FormHandler';
-import MenuFormHandler from './components/MenuFormHandler';
-import AppWrapper24 from './components/AppWrapper24';
-import ActorsPage from './components/ActorsPage';
-
-
-
-
+import Movie from './sections/MoviesProject/Movie';
+import NotesWrapper from './sections/Notes Project/NotesWrapper';
+import MenuFormHandler from './sections/FormHandlerProject/MenuFormHandler';
+import AppWrapper24 from './sections/SimpleLoginProject/AppWrapper24';
+import ActorsPage from './sections/ActorsProject/ActorsPage';
+import RefCounterWrapper from './sections/RefCounterProject/RefCounterWrapper';
+import LoginPage from './sections/SimpleLoginProject/LoginPage';
+import { UserLoggedIn } from './sections/GoogleSignUpProject/Context';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { ProfileData } from './sections/GoogleSignUpProject/Context';
+import ActorProfile from './sections/ActorsProject/ActorProfile';
+import MoviePageWrapper from './sections/MoviesProject/MoviePageWrapper';
 
 
 function App() {
-  const [genre, setGenre] = useState('show-all');
-  const [search, setSearch] = useState('');
+  const [isLoggedIn, setIsLoggedIn]  = useState(false);
+  const [profileData, setProfileData] = useState({})
   return (
     <div className='App'>
-      <NavBar />
-      <Routes>
-          <Route path="/" element={<DogCard />} />
-          <Route path="/dogs" element={<DogCard />} />
-          <Route path="/movies" element={
-            <div>
-              <SearchInput setFunc={setSearch}/>
-              <FilterButtons setFunc={setGenre} setFunc2={setSearch}/>
-              <MovieCards genre={genre} search={search}/>
-            </div> } /> 
-          <Route path='/movies/:id' element={<Movie />} />
-          <Route path="/form_handler" element={<MenuFormHandler />} />
-          <Route path="/notes_project" element={<NotesWrapper />} />
-          <Route path="/new_project_24/*" element={<AppWrapper24 />} />
-          <Route path="/actors" element={<ActorsPage />} />
-      </Routes>
+      <GoogleOAuthProvider clientId="116034257278-nfko7hcsr5rd8qaea8v97t9rr0jfg042.apps.googleusercontent.com">
+        <UserLoggedIn.Provider value={{isLoggedIn, setIsLoggedIn}}>
+        <ProfileData.Provider value={{profileData, setProfileData}}>
+          <NavBar />
+          <Routes>
+              <Route path="/" element={<DogCard />} />
+              <Route path="/dogs" element={<DogCard />} />
+              <Route path="/movies" element={<MoviePageWrapper />} /> 
+              <Route path='/movies/:id' element={<Movie />} />
+              <Route path="/form_handler" element={<MenuFormHandler />} />
+              <Route path="/notes_project" element={<NotesWrapper />} />
+              <Route path="/new_project_24/*" element={<AppWrapper24 />} />
+              <Route path="/actors/:id" element={<ActorProfile />} />
+              <Route path="/actors" element={<ActorsPage />} />
+              <Route path="/ref-counter" element={<RefCounterWrapper />} />
+              <Route path="/sign-in" element={<LoginPage setIsLoggedIn={setIsLoggedIn}/>} />
+          </Routes>
+          </ProfileData.Provider>
+        </UserLoggedIn.Provider>
+      </GoogleOAuthProvider>
     </div>
   )
 }

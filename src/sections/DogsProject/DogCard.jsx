@@ -15,6 +15,7 @@ function DogCard() {
     console.log(imgPath);
     }
 
+  
   useEffect(() => {
     fetchData();
   }, []);
