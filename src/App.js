@@ -9,7 +9,7 @@ import MenuFormHandler from './sections/FormHandlerProject/MenuFormHandler';
 import AppWrapper24 from './sections/SimpleLoginProject/AppWrapper24';
 import ActorsPage from './sections/ActorsProject/ActorsPage';
 import RefCounterWrapper from './sections/RefCounterProject/RefCounterWrapper';
-import LoginPage from './sections/SimpleLoginProject/LoginPage';
+import LoginPage from './sections/GoogleSignUpProject/LoginPage';
 import { UserLoggedIn } from './sections/GoogleSignUpProject/Context';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { ProfileData } from './sections/GoogleSignUpProject/Context';

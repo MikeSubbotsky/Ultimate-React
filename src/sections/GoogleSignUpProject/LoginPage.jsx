@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import { UserLoggedIn, ProfileData } from '../GoogleSignUpProject/Context';
+import { UserLoggedIn, ProfileData } from './Context';
 import { GoogleLogin, googleLogout } from '@react-oauth/google';
 
 function LoginPage() {
